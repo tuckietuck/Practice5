@@ -1,0 +1,76 @@
+[gd_scene format=3 uid="uid://b8bnub4btu1qk"]
+
+[ext_resource type="Script" uid="uid://c7j715kjtwewq" path="res://EnemySpawner.cs" id="1"]
+[ext_resource type="PackedScene" path="res://Enemy.tscn" id="2"]
+[ext_resource type="Script" uid="uid://brfflkdmprhy5" path="res://EnemyBuilder.cs" id="3"]
+[ext_resource type="Script" uid="uid://6jcewhqucqie" path="res://EnemyData.cs" id="4"]
+[ext_resource type="Script" uid="uid://c7xapkwibkdnf" path="res://OrcBuilder.cs" id="5"]
+[ext_resource type="Texture2D" uid="uid://ulbdaksu61vp" path="res://Orc.svg" id="6"]
+[ext_resource type="Script" uid="uid://cob3hiyparook" path="res://DragonBuilder.cs" id="7"]
+[ext_resource type="Texture2D" uid="uid://brtxqquaudka2" path="res://Dragon.svg" id="8"]
+[ext_resource type="Script" uid="uid://cprpwhiyr2oos" path="res://GoblinBuilder.cs" id="9"]
+[ext_resource type="Texture2D" uid="uid://dmxey7ftnaj1l" path="res://Goblin.svg" id="10"]
+[ext_resource type="Script" path="res://Player.cs" id="11"]
+
+[sub_resource type="CircleShape2D" id="PlayerShape"]
+radius = 17.0
+
+[sub_resource type="Resource" id="OrcData"]
+script = ExtResource("4")
+Hp = 30
+Damage = 12
+Speed = 150.0
+Sprite = ExtResource("6")
+
+[sub_resource type="Resource" id="OrcBuilder"]
+script = ExtResource("5")
+Preset = SubResource("OrcData")
+
+[sub_resource type="Resource" id="DragonData"]
+script = ExtResource("4")
+Hp = 200
+Damage = 45
+Speed = 80.0
+Sprite = ExtResource("8")
+
+[sub_resource type="Resource" id="DragonBuilder"]
+script = ExtResource("7")
+Preset = SubResource("DragonData")
+
+[sub_resource type="Resource" id="GoblinData"]
+script = ExtResource("4")
+Hp = 20
+Damage = 8
+Speed = 210.0
+Sprite = ExtResource("10")
+
+[sub_resource type="Resource" id="GoblinBuilder"]
+script = ExtResource("9")
+Preset = SubResource("GoblinData")
+
+[node name="GameField" type="Node2D" unique_id=1021596583]
+
+[node name="Field" type="Polygon2D" parent="." unique_id=587063290]
+color = Color(0.09, 0.14, 0.19, 1)
+polygon = PackedVector2Array(24, 48, 876, 48, 876, 492, 24, 492)
+
+[node name="Player" type="CharacterBody2D" parent="." unique_id=86302439]
+position = Vector2(752, 270)
+script = ExtResource("11")
+
+[node name="Marker" type="Polygon2D" parent="Player" unique_id=421057818]
+color = Color(0.41, 0.73, 0.97, 1)
+polygon = PackedVector2Array(-19, 0, 0, -19, 19, 0, 0, 19)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player" unique_id=1243398788]
+shape = SubResource("PlayerShape")
+
+[node name="EnemySpawner" type="Node2D" parent="." unique_id=605093103 node_paths=PackedStringArray("_spawnTimer")]
+position = Vector2(55, 270)
+script = ExtResource("1")
+_enemyScene = ExtResource("2")
+_builders = Array[ExtResource("3")]([SubResource("OrcBuilder"), SubResource("DragonBuilder"), SubResource("GoblinBuilder")])
+_spawnTimer = NodePath("SpawnTimer")
+
+[node name="SpawnTimer" type="Timer" parent="EnemySpawner" unique_id=106010813]
+wait_time = 2.0

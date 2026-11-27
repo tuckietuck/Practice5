@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="850" viewBox="0 0 1300 850" role="img" aria-labelledby="title">
+<title id="title">UML-диаграмма классов практики 5</title>
+<defs>
+  <marker id="isa" markerWidth="12" markerHeight="12" refX="11" refY="6" orient="auto"><path d="M1 1 11 6 1 11Z" fill="#f7f9fc" stroke="#52677e"/></marker>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M1 1 9 5 1 9" fill="none" stroke="#52677e"/></marker>
+</defs>
+<style>
+  text { fill: #173049; font-family: "Segoe UI", Arial, sans-serif; }
+  .name { font-size: 19px; font-weight: 650; }
+  .member { font: 13px Consolas, monospace; }
+  .role, .edge, .base { font-size: 13px; }
+  .edge { paint-order: stroke; stroke: #f7f9fc; stroke-width: 5px; stroke-linejoin: round; }
+</style>
+<rect width="1300" height="850" fill="#f7f9fc"/>
+<text x="45" y="52" font-size="29" font-weight="650">Практика 5. Диаграмма классов Builder</text>
+<g fill="none" stroke="#52677e" stroke-width="1.5" stroke-linejoin="round">
+<path d="M235 145V121" marker-end="url(#isa)"/>
+<path d="M45 550H30V477H52" marker-end="url(#isa)"/>
+<path d="M697 145V103H1000" marker-end="url(#isa)"/>
+<path d="M1102 210V121" marker-end="url(#isa)"/>
+<path d="M425 230H545" marker-end="url(#arrow)"/>
+<path d="M850 222H903V254H955" marker-end="url(#arrow)"/>
+<path d="M850 271H898V308H955" marker-end="url(#arrow)"/>
+<path d="M203 406V520" stroke-dasharray="7 5" marker-end="url(#arrow)"/>
+<path d="M380 564H687C687 551 707 551 707 564H1150V405" marker-end="url(#arrow)"/>
+<path d="M955 390H930V450H707" stroke-dasharray="7 5"/>
+<path d="M687 450H468V540H380" stroke-dasharray="7 5" marker-end="url(#arrow)"/>
+<path d="M512 630V590H1092V630 M802 630V590"/>
+<path d="M697 590V384" marker-end="url(#isa)"/>
+</g>
+<text x="485" y="219" text-anchor="middle" class="edge">_builders</text>
+<text x="538" y="251" text-anchor="end" class="edge">3</text>
+<text x="901" y="213" text-anchor="middle" class="edge">Preset</text>
+<text x="902" y="289" text-anchor="middle" class="edge">_product</text>
+<text x="214" y="490" text-anchor="start" class="edge">создаёт</text>
+<text x="728" y="556" text-anchor="middle" class="edge">Data</text>
+<text x="811" y="442" text-anchor="middle" class="edge">ApplyTo()</text>
+<rect x="167" y="85" width="136" height="36" rx="5" fill="#edf0f5" stroke="#8997aa"/><text x="235" y="108" text-anchor="middle" class="base">Node2D</text>
+<rect x="52" y="459" width="116" height="36" rx="5" fill="#edf0f5" stroke="#8997aa"/><text x="110" y="482" text-anchor="middle" class="base">Area2D</text>
+<rect x="1000" y="85" width="205" height="36" rx="5" fill="#edf0f5" stroke="#8997aa"/><text x="1102.5" y="108" text-anchor="middle" class="base">Resource</text>
+<g transform="translate(45 145)">
+<rect width="380" height="261" rx="8" fill="#fff" stroke="#9bacc0"/>
+<path d="M0 8Q0 0 8 0H372Q380 0 380 8V57H0Z" fill="#dce8f6"/>
+<text x="190" y="19" text-anchor="middle" class="role">Director</text>
+<text x="190" y="43" text-anchor="middle" class="name">EnemySpawner</text>
+<text x="12" y="80" class="member">- _enemyScene: PackedScene {Export}</text><text x="12" y="102" class="member">- _builders: Array&lt;EnemyBuilder&gt; {Export}</text><text x="12" y="124" class="member">- _spawnTimer: Timer {Export}</text><text x="12" y="146" class="member">- _spawnSpread: float {Export}</text>
+<path d="M0 159H380" stroke="#c3cfdd"/>
+<text x="12" y="182" class="member">+ _Ready(): void</text><text x="12" y="204" class="member">- OnTimeout(): void</text><text x="12" y="226" class="member">- Construct(builder: EnemyBuilder): EnemyData</text><text x="12" y="248" class="member">- SpawnEnemy(data: EnemyData): void</text>
+</g>
+<g transform="translate(545 145)">
+<rect width="305" height="239" rx="8" fill="#fff" stroke="#9bacc0"/>
+<path d="M0 8Q0 0 8 0H297Q305 0 305 8V57H0Z" fill="#dce8f6"/>
+<text x="152.5" y="19" text-anchor="middle" class="role">Builder, abstract</text>
+<text x="152.5" y="43" text-anchor="middle" class="name" font-style="italic">EnemyBuilder</text>
+<text x="12" y="80" class="member"># _product: EnemyData</text><text x="12" y="102" class="member">+ Preset: EnemyData {get; set; Export}</text>
+<path d="M0 115H305" stroke="#c3cfdd"/>
+<text x="12" y="138" class="member">+ BuildHp(): void {abstract}</text><text x="12" y="160" class="member">+ BuildDamage(): void {abstract}</text><text x="12" y="182" class="member">+ BuildSpeed(): void {abstract}</text><text x="12" y="204" class="member">+ BuildSprite(): void {abstract}</text><text x="12" y="226" class="member">+ GetResult(): EnemyData</text>
+</g>
+<g transform="translate(955 210)">
+<rect width="295" height="195" rx="8" fill="#fff" stroke="#9bacc0"/>
+<path d="M0 8Q0 0 8 0H287Q295 0 295 8V57H0Z" fill="#dcefe3"/>
+<text x="147.5" y="19" text-anchor="middle" class="role">Product</text>
+<text x="147.5" y="43" text-anchor="middle" class="name">EnemyData</text>
+<text x="12" y="80" class="member">+ Hp: int {get; set; Export}</text><text x="12" y="102" class="member">+ Damage: int {get; set; Export}</text><text x="12" y="124" class="member">+ Speed: float {get; set; Export}</text><text x="12" y="146" class="member">+ Sprite: Texture2D {get; set; Export}</text>
+<path d="M0 159H295" stroke="#c3cfdd"/>
+<text x="12" y="182" class="member">+ ApplyTo(enemy: Enemy): void</text>
+</g>
+<g transform="translate(45 520)">
+<rect width="335" height="112" rx="8" fill="#fff" stroke="#9bacc0"/>
+<path d="M0 8Q0 0 8 0H327Q335 0 335 8V40H0Z" fill="#dce8f6"/>
+
+<text x="167.5" y="26" text-anchor="middle" class="name">Enemy</text>
+<text x="12" y="63" class="member">+ Data: EnemyData {get; set}</text>
+<path d="M0 76H335" stroke="#c3cfdd"/>
+<text x="12" y="99" class="member">+ _PhysicsProcess(delta: double): void</text>
+</g>
+<g transform="translate(390 630)">
+<rect width="245" height="159" rx="8" fill="#fff" stroke="#9bacc0"/>
+<path d="M0 8Q0 0 8 0H237Q245 0 245 8V57H0Z" fill="#dce8f6"/>
+<text x="122.5" y="19" text-anchor="middle" class="role">ConcreteBuilder</text>
+<text x="122.5" y="43" text-anchor="middle" class="name">OrcBuilder</text>
+
+
+<text x="12" y="80" class="member">+ BuildHp(): void {override}</text><text x="12" y="102" class="member">+ BuildDamage(): void {override}</text><text x="12" y="124" class="member">+ BuildSpeed(): void {override}</text><text x="12" y="146" class="member">+ BuildSprite(): void {override}</text>
+</g>
+<g transform="translate(680 630)">
+<rect width="245" height="159" rx="8" fill="#fff" stroke="#9bacc0"/>
+<path d="M0 8Q0 0 8 0H237Q245 0 245 8V57H0Z" fill="#dce8f6"/>
+<text x="122.5" y="19" text-anchor="middle" class="role">ConcreteBuilder</text>
+<text x="122.5" y="43" text-anchor="middle" class="name">DragonBuilder</text>
+
+
+<text x="12" y="80" class="member">+ BuildHp(): void {override}</text><text x="12" y="102" class="member">+ BuildDamage(): void {override}</text><text x="12" y="124" class="member">+ BuildSpeed(): void {override}</text><text x="12" y="146" class="member">+ BuildSprite(): void {override}</text>
+</g>
+<g transform="translate(970 630)">
+<rect width="245" height="159" rx="8" fill="#fff" stroke="#9bacc0"/>
+<path d="M0 8Q0 0 8 0H237Q245 0 245 8V57H0Z" fill="#dce8f6"/>
+<text x="122.5" y="19" text-anchor="middle" class="role">ConcreteBuilder</text>
+<text x="122.5" y="43" text-anchor="middle" class="name">GoblinBuilder</text>
+
+
+<text x="12" y="80" class="member">+ BuildHp(): void {override}</text><text x="12" y="102" class="member">+ BuildDamage(): void {override}</text><text x="12" y="124" class="member">+ BuildSpeed(): void {override}</text><text x="12" y="146" class="member">+ BuildSprite(): void {override}</text>
+</g>
+<rect x="115" y="650" width="195" height="30" rx="5" fill="#edf0f5" stroke="#8997aa"/>
+<text x="212.5" y="670" text-anchor="middle" class="base">CharacterBody2D</text>
+<path d="M212.5 700V680" fill="none" stroke="#52677e" stroke-width="1.5" marker-end="url(#isa)"/>
+<g transform="translate(45 700)">
+<rect width="335" height="100" rx="8" fill="#fff" stroke="#9bacc0"/>
+<path d="M0 8Q0 0 8 0H327Q335 0 335 8V36H0Z" fill="#dce8f6"/>
+<text x="167.5" y="25" text-anchor="middle" class="name">Player</text>
+<text x="12" y="57" class="member">+ Speed: float {get; set; Export}</text>
+<path d="M0 68H335" stroke="#c3cfdd"/>
+<text x="12" y="90" class="member">+ _PhysicsProcess(delta: double): void</text>
+</g>
+<text x="45" y="827" font-size="14">+ public    # protected    - private     |     {Export} - настройка в инспекторе Godot</text>
+</svg>
